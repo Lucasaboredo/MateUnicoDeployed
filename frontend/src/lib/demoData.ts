@@ -13,9 +13,9 @@ const mateGroups = [
   { base: "6", name: "Camionero Negro", category: "Madera", color: "negro", combo: "mate_bombilla", promo: true },
   { base: "7", name: "Torpedo Natural", category: "Calabaza", color: "marron", combo: "mate_bombilla", promo: false },
   { base: "8", name: "Imperial Cincelado", category: "Metal", color: "gris", combo: "mate_bombilla_bolso", promo: false },
-  { base: "9", name: "Mate Urbano", category: "Metal", color: "negro", combo: "mate", promo: true },
+  { base: "9", name: "Mate Urbano", category: "Metal", color: "negro", combo: "mate", promo: false },
   { base: "10", name: "Calabaza Criolla", category: "Calabaza", color: "marron", combo: "mate_bombilla", promo: false },
-  { base: "11", name: "Torpedo Deluxe", category: "Madera", color: "bordo", combo: "mate_bombilla_bolso", promo: true },
+  { base: "11", name: "Torpedo Deluxe", category: "Madera", color: "bordo", combo: "mate_bombilla_bolso", promo: false },
   { base: "12", name: "Imperial Natural", category: "Madera", color: "marron", combo: "mate_bombilla", promo: false },
   { base: "13", name: "Camionero Especial", category: "Madera", color: "negro", combo: "mate", promo: false },
 ];
@@ -42,7 +42,7 @@ const demoProducts = mateGroups.map((mate, index) => {
     material: mate.category,
     activo: true,
     slug: mate.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "-"),
-    destacado: id <= 4 || id === 11 || id === 13,
+    destacado: id <= 4,
     permite_grabado: mate.category !== "Metal",
     en_promocion: mate.promo,
     precio_oferta: mate.promo ? price - 3500 : undefined,
@@ -84,7 +84,9 @@ const homeData = [
     cta_link: "/productos",
     imagen_hero: [
       { id: 1, url: "/banner-perfil.png", alternativeText: "Banner Mate Unico" },
-      { id: 2, url: "/mates/banner2.png", alternativeText: "Banner de productos Mate Unico" },
+      { id: 2, url: "/banner-perfil3.png", alternativeText: "Banner Mate Unico" },
+      { id: 3, url: "/banner-perfil4.png", alternativeText: "Banner Mate Unico" },
+      { id: 4, url: "/mates/banner2.png", alternativeText: "Banner de productos Mate Unico" },
     ] satisfies DemoImage[],
   },
 ];
@@ -139,10 +141,10 @@ function filterProducts(path: string) {
 
   if (slug) products = products.filter((product) => product.slug === slug);
   if (path.includes("filters[destacado][$eq]=true")) {
-    products = products.filter((product) => product.destacado);
+    products = products.filter((product) => product.destacado).slice(0, 4);
   }
   if (path.includes("filters[en_promocion][$eq]=true")) {
-    products = products.filter((product) => product.en_promocion);
+    products = products.filter((product) => product.en_promocion).slice(0, 3);
   }
 
   return products;

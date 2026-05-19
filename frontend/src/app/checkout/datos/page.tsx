@@ -14,8 +14,7 @@ export default function CheckoutDatosPage() {
 
   const { items, total } = useCart();
   const { buyer, setBuyer } = useCheckout();
-  // ✅ 1. TRAEMOS 'loading' ADEMÁS DE 'user'
-  const { user, loading } = useAuth(); 
+  const { user } = useAuth();
 
   const [form, setForm] = useState({
     nombre: buyer.nombre,
@@ -25,15 +24,6 @@ export default function CheckoutDatosPage() {
   });
 
   const [error, setError] = useState<string | null>(null);
-
-  // ✅ 2. PROTECCIÓN DE RUTA (EL CANDADO)
-  useEffect(() => {
-    // Si ya terminó de cargar y NO hay usuario...
-    if (!loading && !user) {
-      // ...lo echamos al login
-      router.push("/login?redirect=/checkout/datos");
-    }
-  }, [user, loading, router]);
 
   // Pre-carga de datos
   useEffect(() => {
@@ -47,10 +37,6 @@ export default function CheckoutDatosPage() {
       }));
     }
   }, [user]);
-
-  // ✅ 3. RETURN TEMPRANO PARA EVITAR FLASH
-  if (loading) return <div className="py-20 text-center text-gray-500">Cargando sesión...</div>;
-  if (!user) return null; // No mostramos nada mientras redirige
 
   // Si el carrito está vacío...
   if (!items || items.length === 0) {

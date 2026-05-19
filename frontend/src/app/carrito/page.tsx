@@ -4,13 +4,11 @@ import React, { useState } from "react";
 import Stepper from "@/components/stepper/Stepper";
 import CartItemRow from "@/components/cart/CartItemRow";
 import { useCart } from "@/lib/cartContext";
-import { useAuth } from "@/lib/authContext";
 import { useRouter } from "next/navigation";
 import { fetchFromStrapi } from "@/lib/api";
 
 export default function CarritoPage() {
   const { items, total } = useCart();
-  const { user } = useAuth();
   const router = useRouter();
 
   // Estados para la validación de stock
@@ -50,12 +48,7 @@ export default function CarritoPage() {
         }
       }
 
-      // 2. VERIFICACIÓN DE LOGIN (Tu lógica vieja)
-      if (user) {
-        router.push("/checkout");
-      } else {
-        router.push("/login?redirect=/checkout");
-      }
+      router.push("/checkout");
 
     } catch (err: any) {
       setErrorMsg(err.message || "Error al verificar stock.");
