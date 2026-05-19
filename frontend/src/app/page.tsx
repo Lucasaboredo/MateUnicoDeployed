@@ -71,13 +71,13 @@ export default function Home() {
 
       {/* ================= SECCIÓN PROMOCIONES 🔥 ================= */}
       <section className="w-full border-b border-[#E5E0D8] bg-[#FAF7F2] py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6">
           <div className="mb-9 flex flex-col items-center text-center sm:mb-12">
-            <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight text-[#2F4A2D] sm:text-4xl md:text-5xl">
-              Promociones 🔥
+            <h2 className="mb-4 max-w-[12ch] text-center text-[clamp(2rem,9vw,3rem)] font-black uppercase leading-tight tracking-tight text-[#2F4A2D] sm:max-w-none sm:text-4xl md:text-5xl">
+              Promociones
             </h2>
             <div className="mb-5 h-1 w-20 rounded-full bg-[#2F4A2D] sm:mb-6"></div>
-            <p className="text-[#5C5149] font-medium text-sm max-w-md text-center">
+            <p className="mx-auto max-w-md text-center text-sm font-medium leading-relaxed text-[#5C5149]">
               Aprovechá nuestros precios exclusivos por tiempo limitado.
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function Home() {
             </div>
           ) : promociones.length > 0 ? (
             /* ✨ AJUSTE: Mismo grid y centrado que Destacados */
-            <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="mx-auto grid w-full max-w-sm grid-cols-1 justify-items-center gap-6 sm:max-w-none sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               {promociones.map((prod: any) => (
                 <div key={`promo-${prod.id}`} className="flex w-full justify-center">
                   <ProductCard producto={prod} />
@@ -105,13 +105,13 @@ export default function Home() {
 
       {/* ================= SECCIÓN DESTACADOS ✨ ================= */}
       <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6">
           <div className="mb-9 flex flex-col items-center text-center sm:mb-12">
-            <h2 className="mb-4 text-center text-3xl font-bold uppercase tracking-tight text-[#1a1a1a] md:text-4xl">
+            <h2 className="mb-4 max-w-[13ch] text-center text-[clamp(2rem,9vw,2.5rem)] font-bold uppercase leading-tight tracking-tight text-[#1a1a1a] sm:max-w-none md:text-4xl">
               Nuestros Destacados
             </h2>
             <div className="mb-5 h-1 w-12 bg-[#4A4A40] sm:mb-6"></div>
-            <p className="text-gray-500 max-w-lg text-sm leading-relaxed text-center">
+            <p className="mx-auto max-w-lg text-center text-sm leading-relaxed text-gray-500">
               La calidad que nos define en cada pieza.
             </p>
           </div>
@@ -120,7 +120,7 @@ export default function Home() {
             <div className="text-center py-10 text-gray-400 animate-pulse">Cargando destacados...</div>
           ) : productosDestacados.length > 0 ? (
             /* ✨ flex-wrap hace que se apilen hacia abajo si o si en mobile pero manteniendo 4 por fila en compu */
-            <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+            <div className="mx-auto grid w-full max-w-sm grid-cols-1 justify-items-center gap-6 sm:max-w-none sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {productosDestacados.map((prod: any) => (
                 <div key={`dest-${prod.id}`} className="flex w-full justify-center">
                   <ProductCard producto={prod} />

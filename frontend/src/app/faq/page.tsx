@@ -54,28 +54,23 @@ export default async function FAQPage() {
   return (
     <main className="min-h-screen w-full bg-[#FCFAF6] text-[#1a1a1a]">
       {/* === HERO SECTION === */}
-      <div className="relative overflow-hidden bg-[#FAF7F2] px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 md:pb-24">
-        {/* Elemento decorativo de fondo */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-40">
-           <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[100%] rounded-full bg-gradient-to-bl from-[#E5E0D8] to-transparent blur-3xl" />
-        </div>
-
+      <div className="relative overflow-hidden bg-[#FAF7F2] px-5 pb-16 pt-12 text-center sm:px-6 sm:pb-20 sm:pt-16 md:pb-24">
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <span className="mb-5 inline-block rounded-full border border-[#D6CEC5] bg-white/60 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#5C5149] shadow-sm backdrop-blur-sm sm:mb-6 sm:px-5 sm:text-[11px]">
             Centro de Ayuda
           </span>
-          <h1 className="mb-5 text-4xl font-black uppercase tracking-tighter text-[#2F4A2D] md:text-5xl lg:mb-6 lg:text-7xl">
+          <h1 className="mx-auto mb-5 max-w-[12ch] text-[clamp(2.35rem,11vw,4.5rem)] font-black uppercase leading-tight tracking-tight text-[#2F4A2D] sm:max-w-none md:text-5xl lg:mb-6 lg:text-7xl">
             Preguntas Frecuentes
           </h1>
           <div className="h-1.5 w-24 bg-[#6B5E54] rounded-full mx-auto mb-8"></div>
-          <p className="mx-auto max-w-2xl text-base text-[#5C5149] md:text-lg leading-relaxed font-medium">
+          <p className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-[#5C5149] md:text-lg">
             Resolvemos tus dudas sobre compras, envíos y personalización para que tu experiencia con Mate Único sea excepcional.
           </p>
         </div>
       </div>
 
       {/* === LISTA ACORDEÓN === */}
-      <div className="relative z-20 mx-auto -mt-8 max-w-4xl px-4 pb-16 sm:-mt-10 sm:px-6 sm:pb-24 lg:pb-28">
+      <div className="relative z-20 mx-auto -mt-8 max-w-4xl px-5 pb-16 sm:-mt-10 sm:px-6 sm:pb-24 lg:pb-28">
         <div className="flex flex-col gap-4">
           {faq.secciones.map((sec) => {
             const iconUrl = getImageUrl(sec.icono);
@@ -103,7 +98,7 @@ export default async function FAQPage() {
                 className="group w-full rounded-2xl bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-[#EBE7E0] transition-all duration-300 open:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.08)] open:border-[#D6CEC5]"
               >
                 {/* CABECERA (Pregunta) */}
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-4 outline-none marker:hidden sm:p-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-4 outline-none marker:hidden sm:gap-4 sm:p-6">
                   <div className="flex min-w-0 items-center gap-3 sm:gap-5">
                     {/* Ícono opcional o Emoji por título */}
                     {iconUrl ? (
@@ -119,7 +114,7 @@ export default async function FAQPage() {
                         {sectionEmoji}
                       </div>
                     )}
-                    <h3 className="pr-1 text-base font-bold text-[#1a1a1a] transition-colors group-hover:text-[#2F4A2D] sm:text-lg md:text-xl">
+                    <h3 className="pr-1 text-left text-base font-bold leading-snug text-[#1a1a1a] transition-colors group-hover:text-[#2F4A2D] sm:text-lg md:text-xl">
                       {sec.titulo}
                     </h3>
                   </div>
@@ -141,7 +136,7 @@ export default async function FAQPage() {
                 {/* CONTENIDO (Respuesta) */}
                 <div className="overflow-hidden">
                   <div className="animate-in slide-in-from-top-2 fade-in px-4 pb-6 pt-1 duration-300 sm:px-6 sm:pb-8 sm:pl-[5.5rem] sm:pt-2">
-                    <div className="text-[15px] leading-relaxed text-[#5C5149] font-medium border-l-2 border-[#EBE7E0] pl-5">
+                    <div className="border-l-2 border-[#EBE7E0] pl-4 text-left text-[15px] font-medium leading-relaxed text-[#5C5149] sm:pl-5">
                       {renderDescripcion(sec.descripcion)}
                     </div>
                   </div>

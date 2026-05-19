@@ -39,7 +39,7 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
   }
 
   return (
-    <section className="relative w-full h-[calc(100svh-118px)] min-h-[430px] max-h-[620px] overflow-hidden bg-[#F4F1EB] sm:h-[520px] lg:h-[600px]">
+    <section className="relative h-[520px] min-h-[480px] w-full overflow-hidden bg-[#F4F1EB] sm:h-[560px] lg:h-[600px]">
       
       {/* IMÁGENES */}
       {images.map((img, index) => {
@@ -58,30 +58,31 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
               alt={img.alternativeText || "Banner Mate Único"}
               fill
               priority={isActive}
-              className="object-cover object-center sm:object-right"
+              sizes="100vw"
+              className="object-cover object-center"
             />
           </div>
         );
       })}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#F4F1EB]/65 z-20 sm:bg-[#F4F1EB]/55" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-[#F4F1EB]/25 via-[#F4F1EB]/60 to-[#F4F1EB]/95 sm:bg-[#F4F1EB]/55 sm:bg-none" />
 
       {/* TEXTO */}
-      <div className="relative z-30 h-full mx-auto flex max-w-[1200px] items-center px-5 py-10 sm:px-6 lg:px-4">
-        <div className="max-w-[600px]">
-          <h1 className="mb-4 text-[42px] leading-[1.05] font-bold text-[#2F4A2D] sm:mb-6 sm:text-[56px] lg:text-[64px]">
+      <div className="relative z-30 mx-auto flex h-full max-w-[1200px] items-end justify-center px-5 pb-16 pt-10 text-center sm:items-center sm:justify-start sm:px-6 sm:py-10 sm:text-left lg:px-4">
+        <div className="mx-auto max-w-[560px] sm:mx-0 sm:max-w-[600px]">
+          <h1 className="mb-4 text-[clamp(2.5rem,12vw,4rem)] font-bold leading-[1.03] text-[#2F4A2D] sm:mb-6 sm:text-[56px] lg:text-[64px]">
             {home.titulo}
           </h1>
 
-          <p className="mb-8 max-w-[34rem] text-lg leading-relaxed text-[#4B4B4B] sm:mb-10 sm:text-2xl">
+          <p className="mx-auto mb-7 max-w-[30rem] text-base font-medium leading-relaxed text-[#4B4B4B] sm:mx-0 sm:mb-10 sm:text-2xl">
             {home.subtitulo}
           </p>
 
           {/* 👉 SIEMPRE VA A PRODUCTOS */}
           <a
             href={home.cta_link || "/productos"}
-            className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-[#486837] px-8 py-3 text-base font-semibold text-white transition hover:bg-[#3A542D] sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
+            className="inline-flex min-h-12 w-auto min-w-[220px] items-center justify-center rounded-md bg-[#486837] px-8 py-3 text-base font-semibold text-white transition hover:bg-[#3A542D] sm:px-10 sm:py-4 sm:text-lg"
           >
             {home.cta_texto || "Comprar ahora"}
           </a>
@@ -90,7 +91,7 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
 
       {/* DOTS */}
       {images.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+        <div className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 gap-3 sm:bottom-6">
           {images.map((_, i) => (
             <button
               key={i}

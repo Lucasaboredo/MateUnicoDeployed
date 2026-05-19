@@ -94,13 +94,13 @@ export default function ProductosView({ productos }: { productos: any[] }) {
 
   return (
     <main className="min-h-screen w-full bg-[#F4F1EB] font-sans text-[#5C5149]">
-      <section className="mx-auto flex max-w-[1400px] flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:flex-row lg:gap-12 lg:py-12">
+      <section className="mx-auto flex max-w-[1400px] flex-col items-center gap-8 px-5 py-8 sm:px-6 sm:py-10 lg:flex-row lg:items-start lg:gap-12 lg:py-12">
 
         {/* ================= SIDEBAR (Filtros) ================= */}
-        <aside className="w-full flex-shrink-0 lg:w-64">
+        <aside className="mx-auto w-full max-w-md flex-shrink-0 lg:mx-0 lg:w-64">
           <div className="space-y-5 lg:sticky lg:top-36 lg:space-y-8">
 
-            <div className="flex items-end justify-between gap-4 lg:block">
+            <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:justify-between lg:block lg:text-left">
               <h2 className="mb-0 text-3xl font-bold text-[#5C5149] lg:mb-4">Productos</h2>
               <button
                 onClick={limpiarFiltros}
@@ -224,13 +224,13 @@ export default function ProductosView({ productos }: { productos: any[] }) {
         </aside>
 
         {/* ================= CONTENIDO PRINCIPAL ================= */}
-        <div className="min-w-0 flex-1">
-          <div className="mb-8 flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
-            <p className="text-[#5C5149]/60 text-sm">
+        <div className="w-full min-w-0 flex-1">
+          <div className="mb-8 flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+            <p className="text-sm text-[#5C5149]/60">
               Mostrando <span className="font-bold text-[#5C5149]">{productosProcesados.length}</span> productos
             </p>
 
-            <div className="flex items-center gap-3">
+            <div className="flex w-full max-w-sm flex-col items-stretch gap-2 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:gap-3">
               <span className="text-sm font-medium text-[#5C5149] whitespace-nowrap">Ordenar por:</span>
               <div className="relative">
                 <select
@@ -248,13 +248,13 @@ export default function ProductosView({ productos }: { productos: any[] }) {
           </div>
 
           {productosProcesados.length > 0 ? (
-            <div className="grid grid-cols-1 justify-items-center gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-12">
+            <div className="mx-auto grid w-full max-w-sm grid-cols-1 justify-items-center gap-x-6 gap-y-8 sm:max-w-none sm:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-12">
               {productosProcesados.map((p: any) => (
                 <ProductCard key={p.id} producto={p} />
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center py-20 bg-white/50 rounded-xl border border-dashed border-[#E0DCD3]">
+            <div className="mx-auto flex max-w-md flex-col items-center justify-center rounded-xl border border-dashed border-[#E0DCD3] bg-white/50 px-5 py-16 text-center sm:py-20">
               <p className="text-lg font-medium text-[#5C5149] mb-2">No encontramos mates con esos filtros.</p>
               <button
                 onClick={limpiarFiltros}

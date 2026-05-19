@@ -212,22 +212,25 @@ export default function Header() {
 
       {/* 🔹 BARRA INFERIOR BEIGE (Intacta) */}
       <nav className="w-full bg-[#FCFAF6] border-b border-[#E6E2DB]">
-        <div className="mx-auto max-w-[1400px] overflow-x-auto px-3 scrollbar-hide">
+        <div className="mx-auto max-w-[1400px] px-3">
         <div
-          className={`${inter.className} flex min-w-max items-center justify-start gap-5 py-3 text-[13px] font-medium text-[#333333] sm:justify-center sm:gap-10 sm:text-[14px] lg:gap-20 lg:text-[15px]`}
+          className={`${inter.className} flex w-full flex-wrap items-center justify-center gap-x-4 gap-y-2 py-3 text-[12px] font-medium text-[#333333] sm:gap-x-10 sm:text-[14px] lg:gap-x-20 lg:text-[15px]`}
         >
           {[
             { label: "Home", href: "/" },
             { label: "Productos", href: "/productos" },
-            { label: "Simulador de Grabado", href: "/simulador" },
+            { label: "Simulador de Grabado", mobileLabel: "Simulador", href: "/simulador" },
             { label: "FAQ", href: "/faq" },
           ].map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="relative whitespace-nowrap pb-1 transition-all duration-200 hover:font-semibold"
+              className="relative whitespace-nowrap px-1 pb-1 text-center transition-all duration-200 hover:font-semibold"
             >
-              <span className={isActive(item.href) ? "font-semibold text-[#2F4A2D]" : ""}>{item.label}</span>
+              <span className={isActive(item.href) ? "font-semibold text-[#2F4A2D]" : ""}>
+                <span className="sm:hidden">{item.mobileLabel || item.label}</span>
+                <span className="hidden sm:inline">{item.label}</span>
+              </span>
 
               {isActive(item.href) && (
                 <span className="absolute left-0 -bottom-[2px] w-full h-[2px] bg-[#2F4A2D]" />

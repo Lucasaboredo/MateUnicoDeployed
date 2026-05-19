@@ -83,10 +83,8 @@ const homeData = [
     cta_texto: "Ver productos",
     cta_link: "/productos",
     imagen_hero: [
-      { id: 1, url: "/banner-perfil.png", alternativeText: "Banner Mate Unico" },
-      { id: 2, url: "/banner-perfil3.png", alternativeText: "Banner Mate Unico" },
-      { id: 3, url: "/banner-perfil4.png", alternativeText: "Banner Mate Unico" },
-      { id: 4, url: "/mates/banner2.png", alternativeText: "Banner de productos Mate Unico" },
+      { id: 1, url: "/hero-mates.jpg", alternativeText: "Hero Mate Unico" },
+      { id: 2, url: "/banner-perfil.png", alternativeText: "Banner Mate Unico" },
     ] satisfies DemoImage[],
   },
 ];
