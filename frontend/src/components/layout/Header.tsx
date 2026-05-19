@@ -78,25 +78,25 @@ export default function Header() {
       }`}
     >
       {/* 🔹 BARRA SUPERIOR VERDE */}
-      <div className="w-full bg-[#5F6B58] h-[95px] flex items-center">
-        <div className="mx-auto flex max-w-[1400px] w-full items-center justify-between px-10">
+      <div className="w-full bg-[#5F6B58] h-[72px] flex items-center sm:h-[84px] lg:h-[95px]">
+        <div className="mx-auto flex max-w-[1400px] w-full items-center justify-between gap-3 px-4 sm:px-6 lg:px-10">
           {/* LOGO */}
-          <Link href="/" className="flex items-center gap-1 cursor-pointer">
+          <Link href="/" className="flex min-w-0 items-center gap-1 cursor-pointer">
             <Image
               src="/logo-mate.svg"
               alt="Logo Mate Único"
               width={151}
               height={226}
-              className="w-[80px] h-auto mt-1"
+              className="w-[52px] h-auto mt-1 sm:w-[68px] lg:w-[80px]"
               priority
             />
-            <span className={`${tilt.className} text-[26px] text-[#FCFAF6] leading-none mt-[3px]`}>
+            <span className={`${tilt.className} truncate text-[20px] text-[#FCFAF6] leading-none mt-[3px] sm:text-[24px] lg:text-[26px]`}>
               Mate Único
             </span>
           </Link>
 
           {/* ICONOS */}
-          <div className="flex flex-row items-center gap-12">
+          <div className="flex flex-row items-center gap-4 sm:gap-8 lg:gap-12">
             {/* ❤️ FAVORITOS */}
             <Link
               href="/favoritos"
@@ -109,7 +109,7 @@ export default function Header() {
                 alt="Favoritos"
                 width={56}
                 height={46}
-                className="w-[26px] h-auto"
+                className="w-[23px] h-auto sm:w-[26px]"
               />
             </Link>
 
@@ -124,7 +124,7 @@ export default function Header() {
                 alt="Carrito"
                 width={56}
                 height={46}
-                className="w-[28px] h-auto"
+                className="w-[24px] h-auto sm:w-[28px]"
               />
               {cartCount > 0 && (
                 <span
@@ -159,7 +159,7 @@ export default function Header() {
                   <div className="w-[32px] h-[32px] rounded-full bg-[#FCFAF6] text-[#5F6B58] flex items-center justify-center font-bold text-lg shadow-sm border border-[#E6E2DB]">
                     {user.username?.charAt(0).toUpperCase()}
                   </div>
-                  <span className="text-[10px] text-[#FCFAF6] font-medium leading-none">
+                  <span className="hidden text-[10px] text-[#FCFAF6] font-medium leading-none sm:block">
                     {user.username.split(" ")[0]}
                   </span>
                 </button>
@@ -212,8 +212,9 @@ export default function Header() {
 
       {/* 🔹 BARRA INFERIOR BEIGE (Intacta) */}
       <nav className="w-full bg-[#FCFAF6] border-b border-[#E6E2DB]">
+        <div className="mx-auto max-w-[1400px] overflow-x-auto px-3 scrollbar-hide">
         <div
-          className={`${inter.className} mx-auto flex max-w-[1400px] items-center justify-center gap-20 py-3 text-[15px] font-medium text-[#333333]`}
+          className={`${inter.className} flex min-w-max items-center justify-start gap-5 py-3 text-[13px] font-medium text-[#333333] sm:justify-center sm:gap-10 sm:text-[14px] lg:gap-20 lg:text-[15px]`}
         >
           {[
             { label: "Home", href: "/" },
@@ -224,7 +225,7 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="relative pb-1 transition-all duration-200 hover:font-semibold"
+              className="relative whitespace-nowrap pb-1 transition-all duration-200 hover:font-semibold"
             >
               <span className={isActive(item.href) ? "font-semibold text-[#2F4A2D]" : ""}>{item.label}</span>
 
@@ -233,6 +234,7 @@ export default function Header() {
               )}
             </Link>
           ))}
+        </div>
         </div>
       </nav>
     </header>

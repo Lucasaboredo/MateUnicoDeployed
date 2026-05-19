@@ -64,19 +64,19 @@ export default function Home() {
       {!loadingHero && slides.length > 0 ? (
         <HeroCarousel slides={slides} />
       ) : (
-        <div className="w-full h-[400px] bg-[#E5E0D8] flex items-center justify-center text-[#5C5149]">
+        <div className="flex h-[360px] w-full items-center justify-center bg-[#E5E0D8] px-6 text-center text-[#5C5149] sm:h-[400px]">
           <p className="text-xl font-medium tracking-widest uppercase">Mate Único</p>
         </div>
       )}
 
       {/* ================= SECCIÓN PROMOCIONES 🔥 ================= */}
-      <section className="w-full py-20 bg-[#FAF7F2] border-b border-[#E5E0D8]">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="text-center mb-12 flex flex-col items-center">
-            <h2 className="text-4xl md:text-5xl font-black text-[#2F4A2D] tracking-tighter mb-4 uppercase text-center">
+      <section className="w-full border-b border-[#E5E0D8] bg-[#FAF7F2] py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+          <div className="mb-9 flex flex-col items-center text-center sm:mb-12">
+            <h2 className="mb-4 text-center text-3xl font-black uppercase tracking-tight text-[#2F4A2D] sm:text-4xl md:text-5xl">
               Promociones 🔥
             </h2>
-            <div className="h-1 w-20 bg-[#2F4A2D] rounded-full mb-6"></div>
+            <div className="mb-5 h-1 w-20 rounded-full bg-[#2F4A2D] sm:mb-6"></div>
             <p className="text-[#5C5149] font-medium text-sm max-w-md text-center">
               Aprovechá nuestros precios exclusivos por tiempo limitado.
             </p>
@@ -88,9 +88,9 @@ export default function Home() {
             </div>
           ) : promociones.length > 0 ? (
             /* ✨ AJUSTE: Mismo grid y centrado que Destacados */
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {promociones.map((prod: any) => (
-                <div key={`promo-${prod.id}`} className="w-full max-w-[280px] flex justify-center">
+                <div key={`promo-${prod.id}`} className="flex w-full justify-center">
                   <ProductCard producto={prod} />
                 </div>
               ))}
@@ -104,13 +104,13 @@ export default function Home() {
       </section>
 
       {/* ================= SECCIÓN DESTACADOS ✨ ================= */}
-      <section className="w-full py-20 bg-white">
-        <div className="mx-auto max-w-[1200px] px-6">
-          <div className="text-center mb-12 flex flex-col items-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mb-4 uppercase tracking-tight text-center">
+      <section className="w-full bg-white py-12 sm:py-16 lg:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
+          <div className="mb-9 flex flex-col items-center text-center sm:mb-12">
+            <h2 className="mb-4 text-center text-3xl font-bold uppercase tracking-tight text-[#1a1a1a] md:text-4xl">
               Nuestros Destacados
             </h2>
-            <div className="h-1 w-12 bg-[#4A4A40] mb-6"></div>
+            <div className="mb-5 h-1 w-12 bg-[#4A4A40] sm:mb-6"></div>
             <p className="text-gray-500 max-w-lg text-sm leading-relaxed text-center">
               La calidad que nos define en cada pieza.
             </p>
@@ -120,9 +120,9 @@ export default function Home() {
             <div className="text-center py-10 text-gray-400 animate-pulse">Cargando destacados...</div>
           ) : productosDestacados.length > 0 ? (
             /* ✨ flex-wrap hace que se apilen hacia abajo si o si en mobile pero manteniendo 4 por fila en compu */
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {productosDestacados.map((prod: any) => (
-                <div key={`dest-${prod.id}`} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] max-w-[280px] flex justify-center">
+                <div key={`dest-${prod.id}`} className="flex w-full justify-center">
                   <ProductCard producto={prod} />
                 </div>
               ))}
@@ -131,10 +131,10 @@ export default function Home() {
             <p className="text-center text-gray-400 italic">No hay productos destacados hoy.</p>
           )}
 
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center sm:mt-16">
             <Link
               href="/productos"
-              className="group relative inline-flex items-center justify-center px-10 py-4 font-bold text-white transition-all duration-300 bg-[#4A4A40] rounded-full hover:bg-[#2F4A2D] shadow-lg active:scale-95"
+              className="group relative inline-flex min-h-12 w-full items-center justify-center rounded-full bg-[#4A4A40] px-8 py-4 font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#2F4A2D] active:scale-95 sm:w-auto sm:px-10"
             >
               <span className="text-xs uppercase tracking-[0.2em]">Ver Toda la Tienda</span>
             </Link>

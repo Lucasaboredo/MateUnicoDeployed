@@ -30,11 +30,11 @@ export default function SimuladorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F2] pt-28 pb-20">
+    <div className="min-h-screen bg-[#F9F7F2] pb-14 pt-8 sm:pb-20 sm:pt-12">
       <div className="container mx-auto px-4">
         
-        <div className="text-center mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#1a1a1a] mb-4">
+        <div className="mb-8 text-center sm:mb-10">
+          <h1 className="mb-4 text-3xl font-bold text-[#1a1a1a] sm:text-4xl md:text-5xl">
             Personalizá tu Mate
           </h1>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -45,10 +45,10 @@ export default function SimuladorPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start max-w-5xl mx-auto">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
           
           {/* --- PANEL DE CONTROLES (Izquierda) --- */}
-          <div className="lg:col-span-5 flex flex-col gap-6 bg-white p-8 rounded-3xl shadow-lg border border-gray-100 h-fit">
+          <div className="flex h-fit flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-4 shadow-lg sm:p-6 lg:col-span-5 lg:p-8">
             
             {!confirmado ? (
               // MODO EDICIÓN
@@ -63,7 +63,7 @@ export default function SimuladorPage() {
                       <button
                         key={modelo.id}
                         onClick={() => setMateActual(modelo)}
-                        className={`py-3 px-1 rounded-xl text-xs md:text-sm font-bold border-2 transition-all ${
+                        className={`rounded-xl border-2 px-1 py-3 text-xs font-bold transition-all md:text-sm ${
                           mateActual.id === modelo.id
                             ? "border-[#1a1a1a] bg-[#1a1a1a] text-white shadow-md"
                             : "border-gray-200 text-gray-600 hover:border-gray-300 bg-gray-50"
@@ -85,7 +85,7 @@ export default function SimuladorPage() {
                     value={texto}
                     onChange={(e) => setTexto(e.target.value.toUpperCase())}
                     maxLength={10} 
-                    className="w-full border border-gray-300 rounded-xl px-4 py-4 text-xl font-bold text-center tracking-widest focus:ring-2 focus:ring-[#4A4A40] outline-none uppercase placeholder-gray-300 transition-all"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-4 text-center text-lg font-bold uppercase tracking-widest outline-none transition-all placeholder-gray-300 focus:ring-2 focus:ring-[#4A4A40] sm:text-xl"
                     placeholder="EJ: JUAN"
                   />
                   <div className="flex justify-between items-center mt-2">

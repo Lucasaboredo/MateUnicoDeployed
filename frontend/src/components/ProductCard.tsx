@@ -70,12 +70,13 @@ export default function ProductCard({ producto }: Props) {
   const porcentaje = tienePromo ? Math.round(((producto.precioBase - (producto.precio_oferta || 0)) / producto.precioBase) * 100) : 0;
 
   return (
-    <div className={`flex flex-col w-full max-w-[280px] bg-[#5C5149] rounded-2xl p-4 shadow-lg transition-all duration-300 group ${isOutOfStock ? "opacity-75" : "hover:-translate-y-2"}`}>
+    <div className={`flex w-full max-w-[320px] flex-col rounded-2xl bg-[#5C5149] p-3 shadow-lg transition-all duration-300 group sm:max-w-[280px] sm:p-4 ${isOutOfStock ? "opacity-75" : "hover:-translate-y-2"}`}>
       
       <div className="relative w-full aspect-square mb-4 rounded-xl overflow-hidden">
         {/* ✨ BOTÓN FAVORITOS MÁS CHICO */}
         <button
           onClick={toggleFavorite}
+          aria-label={isFav ? "Quitar de favoritos" : "Agregar a favoritos"}
           className={`absolute z-30 right-2 top-2 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-md border ${
             isFav 
               ? "bg-red-500/90 border-red-400 text-white scale-110" 
@@ -110,8 +111,8 @@ export default function ProductCard({ producto }: Props) {
       </div>
 
       <div className="text-center sm:text-left">
-        <h2 className="text-[18px] font-bold text-[#FCFAF6] leading-tight truncate">
-          <Link href={`/productos/${productoSlug}`} className="hover:text-gray-300 transition-colors">{producto.nombre}</Link>
+        <h2 className="min-h-[44px] text-[17px] font-bold leading-tight text-[#FCFAF6] sm:min-h-0 sm:text-[18px]">
+          <Link href={`/productos/${productoSlug}`} className="line-clamp-2 hover:text-gray-300 transition-colors">{producto.nombre}</Link>
         </h2>
         <div className="mt-2 flex items-baseline gap-2 justify-center sm:justify-start">
           {tienePromo ? (

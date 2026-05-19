@@ -7,8 +7,6 @@ import { useCart } from "@/lib/cartContext";
 import { useAuth } from "@/lib/authContext";
 import { useRouter } from "next/navigation";
 import { fetchFromStrapi } from "@/lib/api";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 
 export default function CarritoPage() {
   const { items, total } = useCart();
@@ -67,10 +65,8 @@ export default function CarritoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FCFAF6] flex flex-col">
-      <Header />
-      
-      <div className="flex-grow max-w-[1100px] mx-auto px-6 py-16 w-full">
+    <div className="flex min-h-screen flex-col bg-[#FCFAF6]">
+      <div className="mx-auto w-full max-w-[1100px] flex-grow px-4 py-8 sm:px-6 sm:py-12 lg:py-16">
         {/* STEPPER ORIGINAL */}
         <Stepper currentStep={1} />
 
@@ -82,7 +78,7 @@ export default function CarritoPage() {
         )}
 
         {/* TITULO */}
-        <h2 className="mt-12 mb-6 text-sm font-semibold text-[#333] uppercase tracking-wider">
+        <h2 className="mb-6 mt-8 text-sm font-semibold uppercase tracking-wider text-[#333] sm:mt-12">
           Productos seleccionados
         </h2>
 
@@ -110,10 +106,10 @@ export default function CarritoPage() {
 
         {/* FOOTER DEL CARRITO (Diseño recuperado) */}
         {items.length > 0 && (
-          <div className="mt-16 space-y-10">
+          <div className="mt-10 space-y-8 sm:mt-16 sm:space-y-10">
             {/* TOTAL ESTILO MATE UNICO */}
-            <div className="flex justify-end">
-              <div className="flex items-center gap-6 bg-[#C9C1B5] px-8 py-3 rounded-full shadow-sm">
+            <div className="flex justify-stretch sm:justify-end">
+              <div className="flex w-full items-center justify-between gap-6 rounded-full bg-[#C9C1B5] px-6 py-3 shadow-sm sm:w-auto sm:px-8">
                 <span className="text-sm uppercase font-medium text-[#4A443C]">Total</span>
                 <span className="font-bold text-lg text-[#2D2A26]">
                   ${total.toLocaleString("es-AR")}
@@ -127,7 +123,7 @@ export default function CarritoPage() {
                 onClick={handleContinuar}
                 disabled={loading}
                 className={`
-                  bg-[#6B7A63] text-white px-20 py-4 rounded-full font-medium shadow-lg
+                  w-full bg-[#6B7A63] text-white px-8 py-4 rounded-full font-medium shadow-lg sm:w-auto sm:px-20
                   transition-all active:scale-95
                   ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-[#5a6652]"}
                 `}
@@ -146,7 +142,6 @@ export default function CarritoPage() {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }

@@ -58,7 +58,7 @@ export default function CheckoutEnvioPage() {
   // Si el carrito está vacío
   if (!items || items.length === 0) {
     return (
-      <div className="mx-auto max-w-5xl px-6 py-10">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         <Stepper currentStep={3} />
         <p className="mt-10 text-center text-[#333333]">Tu carrito está vacío.</p>
       </div>
@@ -165,13 +165,13 @@ export default function CheckoutEnvioPage() {
   const totalFinal = Number(total) + Number(form.costoEnvio);
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10">
+    <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
       <Stepper currentStep={3} />
 
-      <div className="mt-10 grid gap-10 md:grid-cols-[1fr_420px]">
+      <div className="mt-8 grid gap-6 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_380px] xl:grid-cols-[minmax(0,1fr)_420px]">
         {/* Formulario de Envío */}
-        <form onSubmit={handleSubmit} className="rounded-2xl bg-[#FCFAF6] p-6 shadow-sm">
-          <div className="flex justify-between items-center mb-6">
+        <form onSubmit={handleSubmit} className="rounded-2xl bg-[#FCFAF6] p-4 shadow-sm sm:p-6">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h1 className="text-xl font-semibold text-[#333333]">Envío</h1>
             {user && (
               <span className="text-xs text-[#5F6B58] bg-[#eef0ec] px-2 py-1 rounded-md">
@@ -180,8 +180,8 @@ export default function CheckoutEnvioPage() {
             )}
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="md:col-span-2">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="sm:col-span-2">
               <label className="text-sm text-[#5C5149]">Calle</label>
               <input
                 name="calle"
@@ -246,7 +246,7 @@ export default function CheckoutEnvioPage() {
           <div className="mt-6 rounded-2xl bg-white p-4">
             <p className="text-sm font-medium text-[#333333]">Método de envío</p>
 
-            <label className="mt-3 flex cursor-pointer items-center justify-between gap-4 rounded-xl border p-3">
+            <label className="mt-3 flex cursor-pointer flex-col gap-3 rounded-xl border p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
               <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
@@ -283,7 +283,7 @@ export default function CheckoutEnvioPage() {
         </form>
 
         {/* Resumen */}
-        <aside className="rounded-2xl bg-white p-6 shadow-sm">
+        <aside className="rounded-2xl bg-white p-4 shadow-sm sm:p-6 lg:sticky lg:top-36 lg:self-start">
           <h2 className="text-lg font-semibold text-[#333333]">Resumen</h2>
           <div className="mt-4 space-y-3">
             {(items as CartItem[]).map((item) => (

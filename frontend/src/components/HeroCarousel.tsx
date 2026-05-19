@@ -39,7 +39,7 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
   }
 
   return (
-    <section className="relative w-full h-[600px] overflow-hidden bg-[#F4F1EB]">
+    <section className="relative w-full h-[calc(100svh-118px)] min-h-[430px] max-h-[620px] overflow-hidden bg-[#F4F1EB] sm:h-[520px] lg:h-[600px]">
       
       {/* IMÁGENES */}
       {images.map((img, index) => {
@@ -58,30 +58,30 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
               alt={img.alternativeText || "Banner Mate Único"}
               fill
               priority={isActive}
-              className="object-cover object-right"
+              className="object-cover object-center sm:object-right"
             />
           </div>
         );
       })}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-[#F4F1EB]/55 z-20" />
+      <div className="absolute inset-0 bg-[#F4F1EB]/65 z-20 sm:bg-[#F4F1EB]/55" />
 
       {/* TEXTO */}
-      <div className="relative z-30 h-full mx-auto max-w-[1200px] px-4 pt-32">
+      <div className="relative z-30 h-full mx-auto flex max-w-[1200px] items-center px-5 py-10 sm:px-6 lg:px-4">
         <div className="max-w-[600px]">
-          <h1 className="mb-6 text-[64px] leading-tight font-bold text-[#2F4A2D]">
+          <h1 className="mb-4 text-[42px] leading-[1.05] font-bold text-[#2F4A2D] sm:mb-6 sm:text-[56px] lg:text-[64px]">
             {home.titulo}
           </h1>
 
-          <p className="mb-10 text-2xl text-[#4B4B4B]">
+          <p className="mb-8 max-w-[34rem] text-lg leading-relaxed text-[#4B4B4B] sm:mb-10 sm:text-2xl">
             {home.subtitulo}
           </p>
 
           {/* 👉 SIEMPRE VA A PRODUCTOS */}
           <a
             href={home.cta_link || "/productos"}
-            className="inline-flex items-center justify-center rounded-md bg-[#486837] px-10 py-4 text-lg font-semibold text-white hover:bg-[#3A542D] transition"
+            className="inline-flex min-h-12 w-full items-center justify-center rounded-md bg-[#486837] px-8 py-3 text-base font-semibold text-white transition hover:bg-[#3A542D] sm:w-auto sm:px-10 sm:py-4 sm:text-lg"
           >
             {home.cta_texto || "Comprar ahora"}
           </a>

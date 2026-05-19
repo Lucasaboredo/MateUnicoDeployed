@@ -15,11 +15,11 @@ export default function Footer() {
     <footer className={`${inter.className} w-full text-[#333333]`}>
 
       {/* BLOQUE PRINCIPAL (Gris Claro #B3B3B3) */}
-      <div className="w-full bg-[#B3B3B3] pt-16 pb-12">
-        <div className="mx-auto max-w-[1400px] px-6">
+      <div className="w-full bg-[#B3B3B3] pb-10 pt-12 sm:pb-12 sm:pt-16">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
 
           {/* GRID DE 4 COLUMNAS */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-8">
+          <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
 
             {/* 1. MARCA / LOGO */}
             <div className="space-y-6">
@@ -90,7 +90,7 @@ export default function Footer() {
                 Métodos de Pago
               </h4>
 
-              <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-700/10">
+              <div className="rounded-2xl border border-gray-700/10 bg-white p-5 shadow-lg sm:p-6">
                 <p className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">
                   Procesado por
                 </p>
@@ -119,8 +119,8 @@ export default function Footer() {
 
       {/* BLOQUE INFERIOR (Gris Oscuro #999999) */}
       <div className="w-full bg-[#999999] border-t border-[#888888]/20">
-        <div className="mx-auto max-w-[1400px] px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[12px] font-bold text-[#333333]">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-4 px-4 py-4 sm:px-6 md:flex-row">
+          <p className="text-center text-[12px] font-bold text-[#333333] md:text-left">
             Copyright Mate Unico - {new Date().getFullYear()}. Todos los derechos reservados.
           </p>
 

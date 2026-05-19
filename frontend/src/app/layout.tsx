@@ -31,7 +31,7 @@ export default function RootLayout({
           <CartProvider>
             <CheckoutProvider>
               <Header />
-              <main className="pt-[140px] min-h-screen bg-[#FCFAF6]">
+              <main className="min-h-screen bg-[#FCFAF6] pt-[118px] sm:pt-[132px] lg:pt-[140px]">
                 {children}
               </main>
               <Footer />

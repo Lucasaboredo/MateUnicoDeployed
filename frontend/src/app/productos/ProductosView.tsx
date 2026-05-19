@@ -93,18 +93,18 @@ export default function ProductosView({ productos }: { productos: any[] }) {
   };
 
   return (
-    <main className="w-full bg-[#F4F1EB] min-h-screen font-sans text-[#5C5149]">
-      <section className="mx-auto max-w-[1400px] px-6 py-12 flex flex-col md:flex-row gap-12">
+    <main className="min-h-screen w-full bg-[#F4F1EB] font-sans text-[#5C5149]">
+      <section className="mx-auto flex max-w-[1400px] flex-col gap-8 px-4 py-8 sm:px-6 sm:py-10 lg:flex-row lg:gap-12 lg:py-12">
 
         {/* ================= SIDEBAR (Filtros) ================= */}
-        <aside className="w-full md:w-64 flex-shrink-0">
-          <div className="sticky top-8 space-y-8">
+        <aside className="w-full flex-shrink-0 lg:w-64">
+          <div className="space-y-5 lg:sticky lg:top-36 lg:space-y-8">
 
-            <div>
-              <h2 className="text-3xl font-bold text-[#5C5149] mb-4">Productos</h2>
+            <div className="flex items-end justify-between gap-4 lg:block">
+              <h2 className="mb-0 text-3xl font-bold text-[#5C5149] lg:mb-4">Productos</h2>
               <button
                 onClick={limpiarFiltros}
-                className="text-sm text-[#5C5149]/60 hover:text-[#486837] underline decoration-transparent hover:decoration-current transition-all"
+                className="whitespace-nowrap text-sm text-[#5C5149]/60 underline decoration-transparent transition-all hover:text-[#486837] hover:decoration-current"
               >
                 Limpiar filtros
               </button>
@@ -147,9 +147,10 @@ export default function ProductosView({ productos }: { productos: any[] }) {
             </div>
 
             {/* --- CATEGORÍAS --- */}
+            <div className="grid gap-5 sm:grid-cols-3 lg:block lg:space-y-8">
             <div>
               <h3 className="text-lg font-bold mb-3 border-b border-[#E0DCD3] pb-1">Categorías</h3>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-2 sm:grid-cols-1 lg:space-y-2 lg:block">
                 {CATEGORIAS.map((c) => {
                   const active = categoria === c.value;
                   return (
@@ -197,7 +198,7 @@ export default function ProductosView({ productos }: { productos: any[] }) {
             {/* --- COLORES --- */}
             <div>
               <h3 className="text-lg font-bold mb-3 border-b border-[#E0DCD3] pb-1">Color</h3>
-              <ul className="space-y-2">
+              <ul className="grid grid-cols-2 gap-2 sm:grid-cols-1 lg:space-y-2 lg:block">
                 {COLORES.map((c) => {
                   const active = color === c.value;
                   return (
@@ -218,12 +219,13 @@ export default function ProductosView({ productos }: { productos: any[] }) {
                 })}
               </ul>
             </div>
+            </div>
           </div>
         </aside>
 
         {/* ================= CONTENIDO PRINCIPAL ================= */}
-        <div className="flex-1">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+        <div className="min-w-0 flex-1">
+          <div className="mb-8 flex flex-col items-stretch justify-between gap-4 sm:flex-row sm:items-center">
             <p className="text-[#5C5149]/60 text-sm">
               Mostrando <span className="font-bold text-[#5C5149]">{productosProcesados.length}</span> productos
             </p>
@@ -234,7 +236,7 @@ export default function ProductosView({ productos }: { productos: any[] }) {
                 <select
                   value={ordenPrecio ?? ""}
                   onChange={(e) => setOrdenPrecio(e.target.value === "" ? null : (e.target.value as OrdenPrecio))}
-                  className="appearance-none bg-white border border-[#E0DCD3] rounded-lg pl-4 pr-10 py-2 text-sm text-[#5C5149] focus:outline-none focus:ring-2 focus:ring-[#5C5149]/20 cursor-pointer shadow-sm"
+                  className="w-full appearance-none rounded-lg border border-[#E0DCD3] bg-white py-2 pl-4 pr-10 text-sm text-[#5C5149] shadow-sm outline-none focus:ring-2 focus:ring-[#5C5149]/20 sm:w-auto"
                 >
                   <option value="">Por defecto</option>
                   <option value="asc">Precio: Menor a mayor</option>
@@ -246,7 +248,7 @@ export default function ProductosView({ productos }: { productos: any[] }) {
           </div>
 
           {productosProcesados.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-1 justify-items-center gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3 xl:gap-x-8 xl:gap-y-12">
               {productosProcesados.map((p: any) => (
                 <ProductCard key={p.id} producto={p} />
               ))}

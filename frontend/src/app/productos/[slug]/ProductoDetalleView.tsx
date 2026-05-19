@@ -359,18 +359,18 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F2] text-[#1a1a1a] pb-20">
-      <div className="container mx-auto px-4 pt-10 lg:pt-16">
-        <nav className="text-xs text-gray-500 mb-8 uppercase tracking-wide font-medium">
+    <div className="min-h-screen bg-[#F9F7F2] pb-14 text-[#1a1a1a] sm:pb-20">
+      <div className="container mx-auto px-4 pt-6 sm:pt-10 lg:pt-16">
+        <nav className="mb-5 text-xs font-medium uppercase tracking-wide text-gray-500 sm:mb-8">
           <Link href="/">Home</Link> / <Link href="/productos">Productos</Link> /{" "}
           <span className="text-gray-900">{producto.nombre}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           {/* GALERÍA */}
           <div className="lg:col-span-7 flex flex-col gap-4">
             <div
-              className={`relative w-full aspect-square bg-white rounded-xl overflow-hidden shadow-sm ${
+              className={`relative mx-auto aspect-square w-full max-w-[620px] overflow-hidden rounded-xl bg-white shadow-sm lg:max-w-none ${
                 isOutOfStock ? "grayscale opacity-60" : ""
               }`}
             >
@@ -402,12 +402,12 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
             </div>
 
             {producto.imagen && producto.imagen.length > 1 && (
-              <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+              <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide sm:gap-4">
                 {producto.imagen.map((img) => (
                   <button
                     key={img.id}
                     onClick={() => setSelectedImage(img.url)}
-                    className={`relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all sm:h-24 sm:w-24 ${
                       selectedImage === img.url
                         ? "border-[#4A4A40]"
                         : "border-transparent hover:border-gray-300"
@@ -424,7 +424,7 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
           <div className="lg:col-span-5 flex flex-col pt-2">
             {/* Título + botón favoritos */}
             <div className="flex items-start justify-between gap-4">
-              <h1 className="text-4xl md:text-[78px] font-bold text-[#1a1a1a] mb-2 leading-[1.1] tracking-tight">
+              <h1 className="mb-2 min-w-0 text-3xl font-bold leading-[1.08] tracking-tight text-[#1a1a1a] sm:text-5xl xl:text-[72px]">
                 {producto.nombre}
               </h1>
 
@@ -448,10 +448,10 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
               {producto.en_promocion && producto.precio_oferta ? (
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-3">
-                    <p className="text-4xl font-bold text-[#2F4A2D]">
+                    <p className="text-3xl font-bold text-[#2F4A2D] sm:text-4xl">
                       {formatPrice((producto.precio_oferta) + (conGrabado ? COSTO_GRABADO : 0))}
                     </p>
-                    <p className="text-xl text-gray-400 line-through decoration-red-500 opacity-70">
+                    <p className="text-base text-gray-400 line-through decoration-red-500 opacity-70 sm:text-xl">
                       {formatPrice((producto.precioBase) + (conGrabado ? COSTO_GRABADO : 0))}
                     </p>
                   </div>
@@ -523,7 +523,7 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
                   grabadoError ? "border-red-400 bg-red-50" : "border-[#E5E0D8]"
                 }`}
               >
-                <div className="flex items-center justify-between mb-3">
+                <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <label className="flex items-center gap-3 cursor-pointer select-none">
                     <div
                       className={`w-6 h-6 rounded flex items-center justify-center border transition-colors ${
@@ -598,9 +598,9 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
             )}
 
             {/* BOTONES */}
-            <div className="flex items-center gap-4 mb-8">
+            <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <div
-                className={`flex items-center border border-gray-300 rounded-full px-4 py-3 bg-white shadow-sm ${
+                className={`flex w-full items-center justify-center rounded-full border border-gray-300 bg-white px-4 py-3 shadow-sm sm:w-auto ${
                   isOutOfStock ? "opacity-50 pointer-events-none" : ""
                 }`}
               >
@@ -622,7 +622,7 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
               <button
                 onClick={handleAddToCart}
                 disabled={isOutOfStock}
-                className={`flex-1 text-white text-sm font-semibold uppercase tracking-wide py-4 px-6 rounded-full transition-all duration-300 shadow-md hover:shadow-lg transform
+                className={`w-full flex-1 rounded-full px-6 py-4 text-sm font-semibold uppercase tracking-wide text-white shadow-md transition-all duration-300 hover:shadow-lg sm:w-auto
                   ${
                     isOutOfStock
                       ? "bg-gray-400 cursor-not-allowed hover:transform-none shadow-none"
@@ -638,14 +638,14 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
         </div>
 
         {/* ✅ OPINIONES izquierda + ENVÍO / FORM derecha */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="mt-12 grid grid-cols-1 gap-10 lg:mt-16 lg:grid-cols-12 lg:gap-12">
           {/* OPINIONES */}
           <div className="lg:col-span-7">
             <h2 className="text-2xl font-semibold mb-6">Opiniones del producto</h2>
 
             {producto.opinions && producto.opinions.length > 0 ? (
               <>
-                <div className="flex items-center gap-4 mb-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div className="mb-8 flex items-center gap-4 rounded-xl border border-gray-100 bg-white p-4 shadow-sm sm:p-6">
                   <span className="text-5xl font-bold text-[#1a1a1a]">{promedio}</span>
                   <div className="flex flex-col">
                     <div className="flex text-[#4A4A40] text-lg">★★★★☆</div>
@@ -697,18 +697,18 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
             <div className="pt-2 border-t border-gray-200 mt-2">
               <p className="text-sm font-medium mb-2 mt-4">Calcular costo de envío</p>
 
-              <div className="flex gap-2 relative max-w-md items-center">
+              <div className="relative flex max-w-md items-center gap-2">
                 <input
                   type="text"
                   placeholder="Código postal"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
-                  className="w-full border border-gray-300 rounded-full pl-5 pr-32 py-3 text-sm focus:outline-none focus:border-[#4A4A40] bg-white"
+                  className="w-full rounded-full border border-gray-300 bg-white py-3 pl-5 pr-28 text-sm focus:border-[#4A4A40] focus:outline-none sm:pr-32"
                 />
                 <button
                   onClick={handleCalculateShipping}
                   disabled={loadingShipping}
-                  className="absolute right-1 top-1 bottom-1 bg-[#A89F91] text-white px-6 rounded-full text-xs font-bold hover:bg-[#968e80] transition uppercase tracking-wide disabled:opacity-70"
+                  className="absolute bottom-1 right-1 top-1 rounded-full bg-[#A89F91] px-4 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[#968e80] disabled:opacity-70 sm:px-6"
                 >
                   {loadingShipping ? "..." : "CALCULAR"}
                 </button>
@@ -798,10 +798,10 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
       </div>
 
       {/* DIVISOR y RELACIONADOS */}
-      <div className="container mx-auto px-4 mt-24 max-w-6xl pt-16 border-t border-gray-200 pb-12">
+      <div className="container mx-auto mt-16 max-w-6xl border-t border-gray-200 px-4 pb-12 pt-10 sm:mt-24 sm:pt-16">
         <h3 className="text-center text-xl font-bold mb-10 text-[#1a1a1a]">También les podría interesar...</h3>
         {relacionados.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {relacionados.map((item) => (
               <ProductCard key={item.id} producto={item} />
             ))}

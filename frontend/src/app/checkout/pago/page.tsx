@@ -196,19 +196,19 @@ export default function CheckoutPagoPage() {
   if (!items || items.length === 0) return null;
 
   return (
-    <div className="min-h-[calc(100vh-140px)] bg-[#FAF7F2]">
-      <div className="mx-auto max-w-5xl px-6 py-12">
+    <div className="min-h-[calc(100vh-118px)] bg-[#FAF7F2]">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12">
         <Stepper currentStep={4} />
 
-        <div className="mt-12 space-y-3">
+        <div className="mt-8 space-y-3 sm:mt-12">
           {items.map((item: any) => {
             const precioOriginal = item.precioUnitario * item.cantidad;
             return (
-              <div key={`${item.productId}-${item.variantId}`} className="flex items-center justify-between rounded-2xl bg-[#6B5E54] px-6 py-5 text-white shadow-sm">
-                <div className="flex items-center gap-4">
+              <div key={`${item.productId}-${item.variantId}`} className="flex flex-col gap-4 rounded-2xl bg-[#6B5E54] px-4 py-4 text-white shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-5">
+                <div className="flex min-w-0 items-center gap-4">
                   <img src={getImageFromCartItem(item)} alt={item.nombre} className="h-16 w-16 rounded-xl object-cover bg-white/10" />
                   <div>
-                    <p className="font-medium">{item.nombre}</p>
+                    <p className="font-medium leading-snug">{item.nombre}</p>
                     <p className="text-xs opacity-80">Cantidad: {item.cantidad}</p>
                     {/* Sumamos visualmente el detalle del grabado si lo tiene */}
                     {item.grabado && item.textoGrabado && (
@@ -218,7 +218,7 @@ export default function CheckoutPagoPage() {
                     )}
                   </div>
                 </div>
-                <div className="text-right flex flex-col items-end justify-center">
+                <div className="flex flex-col items-end justify-center text-right">
                   <span className="text-sm font-medium">${precioOriginal.toLocaleString("es-AR")}</span>
                 </div>
               </div>
@@ -226,7 +226,7 @@ export default function CheckoutPagoPage() {
           })}
 
           {envioPrecio > 0 && (
-            <div className="flex items-center justify-between rounded-2xl bg-[#EBE7E0] border border-[#D6CEC5] px-6 py-4 text-[#5C5149] shadow-sm">
+            <div className="flex flex-col gap-3 rounded-2xl border border-[#D6CEC5] bg-[#EBE7E0] px-4 py-4 text-[#5C5149] shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div className="flex items-center gap-4">
                 <div className="h-14 w-14 flex items-center justify-center rounded-xl bg-white text-2xl shadow-sm">🚚</div>
                 <div>
@@ -239,7 +239,7 @@ export default function CheckoutPagoPage() {
           )}
 
           {cuponAplicado && (
-            <div className="flex items-center justify-between rounded-2xl bg-[#E8F5E9] border border-[#A5D6A7] px-6 py-4 text-[#2E7D32] shadow-sm">
+            <div className="flex flex-col gap-3 rounded-2xl border border-[#A5D6A7] bg-[#E8F5E9] px-4 py-4 text-[#2E7D32] shadow-sm sm:flex-row sm:items-center sm:justify-between sm:px-6">
               <div className="flex items-center gap-4">
                 <div className="h-14 w-14 flex items-center justify-center rounded-xl bg-white text-2xl shadow-sm">🏷️</div>
                 <div>
@@ -262,8 +262,8 @@ export default function CheckoutPagoPage() {
           {cuponMsg && <span className={`text-xs font-medium ml-1 ${cuponAplicado ? "text-green-700" : "text-red-600"}`}>{cuponMsg}</span>}
         </div>
 
-        <div className="mt-12 flex justify-end">
-          <div className="rounded-full bg-[#6B5E54] px-10 py-4 text-white shadow-lg flex items-center gap-3">
+        <div className="mt-10 flex justify-stretch sm:mt-12 sm:justify-end">
+          <div className="flex w-full flex-wrap items-center justify-between gap-3 rounded-2xl bg-[#6B5E54] px-6 py-4 text-white shadow-lg sm:w-auto sm:rounded-full sm:px-10">
             <span className="font-bold text-xl">Total:</span>
             {cuponAplicado && (
               <span className="text-sm text-gray-300 line-through font-medium">
@@ -277,7 +277,7 @@ export default function CheckoutPagoPage() {
         </div>
 
         <div className="mt-10 flex justify-center pb-10">
-          <button onClick={handleConfirm} disabled={isProcessing} className="flex items-center gap-3 rounded-full bg-[#009EE3] px-8 py-4 text-white font-bold hover:bg-[#008AC5] transition-all transform hover:scale-105 shadow-xl disabled:opacity-70">
+          <button onClick={handleConfirm} disabled={isProcessing} className="flex w-full items-center justify-center gap-3 rounded-full bg-[#009EE3] px-6 py-4 font-bold text-white shadow-xl transition-all hover:scale-105 hover:bg-[#008AC5] disabled:opacity-70 sm:w-auto sm:px-8">
             <img src="/mercadopago.svg" alt="MP" className="h-8 w-auto" />
             {isProcessing ? "Procesando..." : "Pagar con Mercado Pago"}
           </button>
