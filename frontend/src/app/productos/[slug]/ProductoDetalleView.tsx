@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Producto, Variante } from "@/types/product";
 import ProductCard from "@/components/ProductCard";
+import { getStrapiMediaUrl, STRAPI_URL } from "@/lib/strapi";
 
 // ✅ Carrito
 import { useCart } from "@/lib/cartContext";
@@ -83,10 +84,7 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
   }, [selectedVariant, producto.imagen]);
 
   // --- 4. HELPERS ---
-  const getImageUrl = (url: string) => {
-    if (!url) return "/placeholder-mate.jpg";
-    return url.startsWith("http") ? url : `http://localhost:1337${url}`;
-  };
+  const getImageUrl = (url: string) => getStrapiMediaUrl(url);
 
   const formatPrice = (amount: number) => {
     return amount.toLocaleString("es-AR", {
@@ -208,10 +206,8 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
 
       setCheckingPurchase(true);
       try {
-        const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
-
         const res = await fetch(
-          `${API_URL}/api/ordens/mis-ordenes`,
+          `${STRAPI_URL}/api/ordens/mis-ordenes`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -266,9 +262,7 @@ export default function ProductoDetalleView({ producto, relacionados }: Props) {
     setErrorMsg("");
 
     try {
-      const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
-
-      const res = await fetch(`${API_URL}/api/opinions`, {
+      const res = await fetch(`${STRAPI_URL}/api/opinions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

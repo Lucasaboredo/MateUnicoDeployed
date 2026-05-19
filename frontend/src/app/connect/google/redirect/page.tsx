@@ -3,6 +3,7 @@
 import { useEffect, Suspense, useState, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useAuth } from "@/lib/authContext";
+import { STRAPI_URL } from "@/lib/strapi";
 
 function GoogleRedirectContent() {
     const searchParams = useSearchParams();
@@ -21,7 +22,7 @@ function GoogleRedirectContent() {
             hasFetched.current = true;
 
             // Le mandamos SOLO el access_token a Strapi
-            fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337"}/api/auth/google/callback?access_token=${accessToken}`)
+            fetch(`${STRAPI_URL}/api/auth/google/callback?access_token=${accessToken}`)
                 .then((res) => {
                     if (!res.ok) throw new Error("No se pudo autenticar con Google");
                     return res.json();

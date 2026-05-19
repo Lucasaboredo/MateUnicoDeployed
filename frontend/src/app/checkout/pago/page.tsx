@@ -8,16 +8,13 @@ import { useCart } from "@/lib/cartContext";
 import { useCheckout } from "@/lib/checkoutContext";
 import { fetchFromStrapi } from "@/lib/api";
 import { useAuth } from "@/lib/authContext";
+import { getStrapiMediaUrl, STRAPI_URL } from "@/lib/strapi";
 
 /* ================= STRAPI HOST ================= */
-const STRAPI_HOST =
-  process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
+const STRAPI_HOST = STRAPI_URL;
 
 function toAbsoluteUrl(url?: string | null) {
-  if (!url) return "";
-  if (url.startsWith("http")) return url;
-  if (url.startsWith("/")) return `${STRAPI_HOST}${url}`;
-  return `${STRAPI_HOST}/${url}`;
+  return getStrapiMediaUrl(url, "");
 }
 
 /* ================= IMAGEN SEGURA ================= */

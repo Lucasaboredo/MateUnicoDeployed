@@ -1,5 +1,6 @@
 // src/app/faq/page.tsx
 import { fetchFromStrapi } from "@/lib/api";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 /* =========================
    TIPOS
@@ -34,14 +35,10 @@ export default async function FAQPage() {
   const res = await fetchFromStrapi(`/faq-pages?${query}`);
   const faq: FAQEntry | undefined = res?.data?.[0];
 
-  const STRAPI_URL =
-    process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") ||
-    "http://localhost:1337";
-
   // Helper para URLs
   const getImageUrl = (img?: ImagenStrapi) => {
     if (!img?.url) return null;
-    return img.url.startsWith("http") ? img.url : `${STRAPI_URL}${img.url}`;
+    return getStrapiMediaUrl(img.url);
   };
 
   const footerImageUrl = getImageUrl(faq?.imagen_footer);

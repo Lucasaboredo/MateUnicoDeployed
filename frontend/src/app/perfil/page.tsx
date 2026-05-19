@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/authContext";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { fetchFromStrapi } from "@/lib/api";
+import { getStrapiMediaUrl, STRAPI_URL } from "@/lib/strapi";
 
 export default function PerfilPage() {
     const { user, token, logout, loading, login } = useAuth();
@@ -35,10 +36,7 @@ export default function PerfilPage() {
 
     // ✅ Helper para imágenes
     const getImageUrl = (url: string) => {
-        if (!url) return "/placeholder.png"; 
-        if (url.startsWith("http")) return url;
-        const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337";
-        return `${STRAPI_URL}${url}`;
+        return getStrapiMediaUrl(url, "/placeholder.png");
     };
 
     // ✅ Helper para fecha
@@ -99,7 +97,7 @@ export default function PerfilPage() {
         setMsg("");
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337"}/api/perfil/me`, {
+            const res = await fetch(`${STRAPI_URL}/api/perfil/me`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -255,7 +253,7 @@ export default function PerfilPage() {
                                                             onClick={async () => {
                                                                 if (!window.confirm("¿Seguro que querés cancelar esta orden?")) return;
                                                                 try {
-                                                                    const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://127.0.0.1:1337"}/api/ordens/mis-ordenes/${o.id}`, {
+                                                                    const res = await fetch(`${STRAPI_URL}/api/ordens/mis-ordenes/${o.id}`, {
                                                                         method: "DELETE",
                                                                         headers: { Authorization: `Bearer ${token}` },
                                                                     });

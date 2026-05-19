@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-const STRAPI_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace("/api", "") ||
-  "http://localhost:1337";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 type Media = {
   url: string;
@@ -23,12 +20,7 @@ type HomeEntry = {
 export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
   // Usamos solo el primer home
   const home = slides[0];
-
-  if (!home || !home.imagen_hero || home.imagen_hero.length === 0) {
-    return null;
-  }
-
-  const images = home.imagen_hero;
+  const images = home?.imagen_hero ?? [];
   const [current, setCurrent] = useState(0);
 
   // ⏱️ AUTOPLAY MÁS LENTO (8 segundos)
@@ -42,13 +34,17 @@ export default function HeroCarousel({ slides }: { slides: HomeEntry[] }) {
     return () => clearInterval(interval);
   }, [images.length]);
 
+  if (!home || images.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative w-full h-[600px] overflow-hidden bg-[#F4F1EB]">
       
       {/* IMÁGENES */}
       {images.map((img, index) => {
         const isActive = index === current;
-        const url = `${STRAPI_URL}${img.url}`;
+        const url = getStrapiMediaUrl(img.url);
 
         return (
           <div

@@ -4,8 +4,8 @@ import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Producto } from "@/types/product";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
-const STRAPI_URL = "http://127.0.0.1:1337";
 const FAVORITES_KEY = "favorites";
 const ULTIMAS_UNIDADES_UMBRAL = 5;
 
@@ -55,13 +55,8 @@ export default function ProductCard({ producto }: Props) {
     window.dispatchEvent(new Event("favoritesUpdated"));
   };
 
-  const getImageUrl = (url: string) => {
-    if (!url) return "/placeholder-mate.jpg";
-    return url.startsWith("http") ? url : `${STRAPI_URL}${url}`;
-  };
-
   const currentImageUrl = producto.imagen?.[currentImageIndex]
-    ? getImageUrl(producto.imagen[currentImageIndex].url)
+    ? getStrapiMediaUrl(producto.imagen[currentImageIndex].url)
     : null;
 
   const totalStock = useMemo(() => {

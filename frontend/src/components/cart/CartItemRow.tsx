@@ -3,14 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/lib/cartContext";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export default function CartItemRow({ item }: any) {
   // 1. IMPORTANTE: Traemos 'items' para calcular el stock global compartido
   const { updateQuantity, removeFromCart, items } = useCart();
 
-  const imgUrl = item.imagenUrl?.startsWith("http")
-    ? item.imagenUrl
-    : `http://localhost:1337${item.imagenUrl}`;
+  const imgUrl = getStrapiMediaUrl(item.imagenUrl);
 
   // 2. LÓGICA DE STOCK COMPARTIDO
   const cantidadTotalOcupada = items

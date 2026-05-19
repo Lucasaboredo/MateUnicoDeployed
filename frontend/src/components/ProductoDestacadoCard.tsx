@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getStrapiMediaUrl } from "@/lib/strapi";
 
 export function ProductoDestacadoCard({ producto }: any) {
   const img = producto?.imagen?.[0];
@@ -7,7 +8,7 @@ export function ProductoDestacadoCard({ producto }: any) {
     <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col items-center w-full cursor-pointer">
       {img && (
         <Image
-          src={`${process.env.NEXT_PUBLIC_API_URL?.replace("/api", "")}${img.url}`}
+          src={getStrapiMediaUrl(img.url)}
           alt={producto.nombre}
           width={300}
           height={300}

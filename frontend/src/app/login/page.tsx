@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/authContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { STRAPI_URL } from "@/lib/strapi";
 
 export default function LoginPage() {
     const { user, login } = useAuth();
@@ -23,7 +24,7 @@ export default function LoginPage() {
 
     // Manejar Login con Google
     const handleGoogleLogin = () => {
-        window.location.href = `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}/api/connect/google`;
+        window.location.href = `${STRAPI_URL}/api/connect/google`;
     };
 
     // Manejar Login con Email/Pass
@@ -33,7 +34,7 @@ export default function LoginPage() {
         setLoadingLocal(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}/api/auth/local`, {
+            const res = await fetch(`${STRAPI_URL}/api/auth/local`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

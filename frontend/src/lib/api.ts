@@ -1,7 +1,10 @@
 // src/lib/api.ts
+import { getDemoResponse } from "./demoData";
+import { STRAPI_URL } from "./strapi";
 
 // Usamos 127.0.0.1 para máxima compatibilidad local
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
+const API_URL = STRAPI_URL;
+const DEMO_MODE = process.env.NEXT_PUBLIC_DEMO_MODE === "true";
 
 export async function fetchFromStrapi(path: string, options: RequestInit = {}) {
   // 1. Aseguramos que el path empiece con "/"
@@ -10,6 +13,10 @@ export async function fetchFromStrapi(path: string, options: RequestInit = {}) {
   // 2. AUTO-CORRECCIÓN DE RUTA
   if (!cleanPath.startsWith("/api") && !cleanPath.startsWith("/uploads")) {
     cleanPath = `/api${cleanPath}`;
+  }
+
+  if (DEMO_MODE) {
+    return getDemoResponse(cleanPath, options);
   }
 
   // 3. 💥 CACHE BUSTER (LA SOLUCIÓN) 💥
@@ -46,6 +53,7 @@ export async function fetchFromStrapi(path: string, options: RequestInit = {}) {
 
   } catch (error) {
     console.error(`🔥 ERROR CRÍTICO DE CONEXIÓN: ${fullUrl}`);
-    throw error;
+    console.warn("Usando datos demo locales porque Strapi no esta disponible.");
+    return getDemoResponse(cleanPath, options);
   }
 }

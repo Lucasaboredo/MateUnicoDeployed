@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { STRAPI_URL } from "@/lib/strapi";
 
 export default function RecuperarClavePage() {
     const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export default function RecuperarClavePage() {
         setLoading(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}/api/auth/forgot-password`, {
+            const res = await fetch(`${STRAPI_URL}/api/auth/forgot-password`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email }),

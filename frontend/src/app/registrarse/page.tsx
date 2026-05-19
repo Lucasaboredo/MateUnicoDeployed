@@ -4,6 +4,7 @@ import { useAuth } from "@/lib/authContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { STRAPI_URL } from "@/lib/strapi";
 
 export default function RegistrarsePage() {
     const { login } = useAuth();
@@ -21,7 +22,7 @@ export default function RegistrarsePage() {
         setLoading(true);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}/api/auth/local/register`, {
+            const res = await fetch(`${STRAPI_URL}/api/auth/local/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
